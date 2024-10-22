@@ -1,0 +1,3 @@
+C:/Users/claud/CLionProjects/PPD_Lab1_C/cmake-build-debug/CMakeFiles/PPD_Lab1_C.dir
+C:/Users/claud/CLionProjects/PPD_Lab1_C/cmake-build-debug/CMakeFiles/edit_cache.dir
+C:/Users/claud/CLionProjects/PPD_Lab1_C/cmake-build-debug/CMakeFiles/rebuild_cache.dir
