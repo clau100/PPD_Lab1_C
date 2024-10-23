@@ -3,6 +3,7 @@
 #include <fstream>
 #include <chrono>
 #include "convolutionsThreadedRows.h"
+#include "convolutionsThreadedColumns.h"
 #include "utils.h"
 
 int N, M;

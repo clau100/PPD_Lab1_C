@@ -7,4 +7,6 @@ add_executable(PPD_Lab1_C main.cpp
         convolutionsThreadedRows.h
         convolutionsThreadedRows.cpp
         utils.h
-        utils.cpp)
+        utils.cpp
+        ConvolutionsThreadedColumns.h
+        ConvolutionsThreadedColumns.cpp)

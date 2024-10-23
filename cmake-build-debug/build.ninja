@@ -67,6 +67,12 @@ build CMakeFiles/PPD_Lab1_C.dir/utils.cpp.obj: CXX_COMPILER__PPD_Lab1_C_unscanne
   OBJECT_DIR = CMakeFiles\PPD_Lab1_C.dir
   OBJECT_FILE_DIR = CMakeFiles\PPD_Lab1_C.dir
 
+build CMakeFiles/PPD_Lab1_C.dir/ConvolutionsThreadedColumns.cpp.obj: CXX_COMPILER__PPD_Lab1_C_unscanned_Debug C$:/Users/claud/CLionProjects/PPD_Lab1_C/ConvolutionsThreadedColumns.cpp || cmake_object_order_depends_target_PPD_Lab1_C
+  DEP_FILE = CMakeFiles\PPD_Lab1_C.dir\ConvolutionsThreadedColumns.cpp.obj.d
+  FLAGS = -g -std=gnu++20 -fdiagnostics-color=always
+  OBJECT_DIR = CMakeFiles\PPD_Lab1_C.dir
+  OBJECT_FILE_DIR = CMakeFiles\PPD_Lab1_C.dir
+
 
 # =============================================================================
 # Link build statements for EXECUTABLE target PPD_Lab1_C
@@ -75,7 +81,7 @@ build CMakeFiles/PPD_Lab1_C.dir/utils.cpp.obj: CXX_COMPILER__PPD_Lab1_C_unscanne
 #############################################
 # Link the executable PPD_Lab1_C.exe
 
-build PPD_Lab1_C.exe: CXX_EXECUTABLE_LINKER__PPD_Lab1_C_Debug CMakeFiles/PPD_Lab1_C.dir/main.cpp.obj CMakeFiles/PPD_Lab1_C.dir/convolutionsThreadedRows.cpp.obj CMakeFiles/PPD_Lab1_C.dir/utils.cpp.obj
+build PPD_Lab1_C.exe: CXX_EXECUTABLE_LINKER__PPD_Lab1_C_Debug CMakeFiles/PPD_Lab1_C.dir/main.cpp.obj CMakeFiles/PPD_Lab1_C.dir/convolutionsThreadedRows.cpp.obj CMakeFiles/PPD_Lab1_C.dir/utils.cpp.obj CMakeFiles/PPD_Lab1_C.dir/ConvolutionsThreadedColumns.cpp.obj
   FLAGS = -g
   LINK_LIBRARIES = -lkernel32 -luser32 -lgdi32 -lwinspool -lshell32 -lole32 -loleaut32 -luuid -lcomdlg32 -ladvapi32
   OBJECT_DIR = CMakeFiles\PPD_Lab1_C.dir
