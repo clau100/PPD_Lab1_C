@@ -55,65 +55,73 @@ void convolve_iterative_static(int mat[1001][1001], int N, int M, int c1[6][6], 
     }
 }
 
-int main() {
-    std::cin >> p;
-    N = M = 10;
-    n = m = 3;
-
-    // DYNAMIC
-    // mat = generateRandomArrayDynamic(N, M);
-    // c = generateRandomArrayDynamic(n, m);
-    // printDynamicArrayToFile(mat, N, M, filename_input);
-    // printDynamicArrayToFile(c, n, m, filename_input_c);
-    //
-    // auto start = std::chrono::high_resolution_clock::now();
-    // res = convolve_iterative_dynamic(mat, N, M, c, n, m);
-    // auto end = std::chrono::high_resolution_clock::now();
-    //
-    // printDynamicArrayToFile(res, N, M, filename_output_iterative);
-    //
-    // res = convolve_rows_dynamic(mat, N, M, c, n, m, p);
-    // printDynamicArrayToFile(res, N, M, filename_output);
-    //
-    // if(!areFilesEqual(filename_output_iterative, filename_output)) {
-    //     assert("Files are not equal");
-    //     return 1;
-    // }
-
-    // STATIC
-    generateRandomArrayStatic(mat1, N, M);
-    generateRandomKernelStaic(c1, n, m);
-    printStaticArrayToFile(mat1, N, M, filename_input);
-    printStaticKernelToFile(c1, n, m, filename_input_c);
-
-    auto start = std::chrono::high_resolution_clock::now();
-    convolve_iterative_static(mat1, N, M, c1, n, m);
-    auto end = std::chrono::high_resolution_clock::now();
-
-    printStaticArrayToFile(res1, N, M, filename_output_iterative);
-
-    convolve_rows_static(mat1, N, M, c1, n, m, p, res1);
-    printStaticArrayToFile(res1, N, M, filename_output);
-
-    if(!areFilesEqual(filename_output_iterative, filename_output)) {
-        assert("Files are not equal");
+int main(int argc, char* argv[]) {
+    if (argc < 2) {
+        std::cerr << "Usage: " << argv[0] << " <number of threads>" << std::endl;
         return 1;
     }
 
-    std::chrono::duration<double> duration = end - start;
-    std::cout <<  duration.count() / 1E6;
+    int p = std::stoi(argv[1]);
 
-    // for (int i = 0; i < N; ++i) {
-    //     delete[] mat[i];
-    //     delete[] res[i];
-    // }
-    // delete[] mat;
-    // delete[] res;
+
+    N = M = 1000;
+    n = m = 5;
+
+    // DYNAMIC
+    mat = generateRandomArrayDynamic(N, M);
+    c = generateRandomArrayDynamic(n, m);
+    printDynamicArrayToFile(mat, N, M, filename_input);
+    printDynamicArrayToFile(c, n, m, filename_input_c);
+
+
+    res = convolve_iterative_dynamic(mat, N, M, c, n, m);
+
+
+    printDynamicArrayToFile(res, N, M, filename_output_iterative);
+
+    auto start = std::chrono::high_resolution_clock::now();
+    res = convolve_rows_dynamic(mat, N, M, c, n, m, p);
+    auto end = std::chrono::high_resolution_clock::now();
+    printDynamicArrayToFile(res, N, M, filename_output);
+
+    if(!areFilesEqual(filename_output_iterative, filename_output)) {
+        assert(false);
+    }
+    for (int i = 0; i < N; ++i) {
+        delete[] mat[i];
+        delete[] res[i];
+    }
+    delete[] mat;
+    delete[] res;
+
+    for (int i = 0; i < n; ++i) {
+        delete[] c[i];
+    }
+    delete[] c;
+
+    // STATIC
+    // generateRandomArrayStatic(mat1, N, M);
+    // generateRandomKernelStaic(c1, n, m);
+    // printStaticArrayToFile(mat1, N, M, filename_input);
+    // printStaticKernelToFile(c1, n, m, filename_input_c);
     //
-    // for (int i = 0; i < n; ++i) {
-    //     delete[] c[i];
+    //
+    // convolve_iterative_static(mat1, N, M, c1, n, m);
+    //
+    // printStaticArrayToFile(res1, N, M, filename_output_iterative);
+    // auto start = std::chrono::high_resolution_clock::now();
+    // convolve_rows_static(mat1, N, M, c1, n, m, p, res1);
+    // auto end = std::chrono::high_resolution_clock::now();
+    // printStaticArrayToFile(res1, N, M, filename_output);
+    //
+    // if(!areFilesEqual(filename_output_iterative, filename_output)) {
+    //     assert(false);
     // }
-    // delete[] c;
+
+    std::chrono::duration<double> duration = end - start;
+    std::cout << std::fixed << std::showpoint;
+    std::cout << std::setprecision(10);
+    std::cout <<  duration.count() * 1E3;
 
     return 0;
 }

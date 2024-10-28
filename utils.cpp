@@ -78,23 +78,33 @@ int** generateRandomArrayDynamic(int N, int M) {
 }
 
 bool areFilesEqual(const std::string& file1, const std::string& file2) {
-    std::ifstream f1(file1);
-    std::ifstream f2(file2);
+    std::ifstream f1(file1, std::ios::binary | std::ios::ate);
+    std::ifstream f2(file2, std::ios::binary | std::ios::ate);
 
     if (!f1.is_open() || !f2.is_open()) {
         std::cerr << "Error opening one of the files." << std::endl;
         return false;
     }
 
-    std::string line1, line2;
-    while (std::getline(f1, line1) && std::getline(f2, line2)) {
-        if (line1 != line2) {
+    // Compare file sizes first
+    if (f1.tellg() != f2.tellg()) {
+        return false; // Different file sizes mean files are not equal
+    }
+
+    // Move back to the beginning of both files
+    f1.seekg(0, std::ios::beg);
+    f2.seekg(0, std::ios::beg);
+
+    // Compare byte by byte
+    char c1, c2;
+    while (f1.get(c1) && f2.get(c2)) {
+        if (c1 != c2) {
             return false;
         }
     }
 
-    // Check if both files have reached the end
-    return f1.eof() && f2.eof();
+    // If we reached this point, the files are equal
+    return true;
 }
 
 int getValueDynamic(int** mat, int N, int M, int i, int j) {
